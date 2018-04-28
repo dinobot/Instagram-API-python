@@ -77,7 +77,7 @@ class InstagramAPI:
 
     def setProxy(self, proxy=None):
         """
-        Set proxy for all requests::
+        Set or unset proxy for all requests::
 
         Proxy format - user:password@ip:port
         """
@@ -85,6 +85,10 @@ class InstagramAPI:
         if proxy is not None:
             print('Set proxy!')
             proxies = {'http': proxy, 'https': proxy}
+            self.s.proxies.update(proxies)
+        else:
+            print('Unset proxy!')
+            proxies = {'http': None, 'https': None}
             self.s.proxies.update(proxies)
 
     def login(self, force=False):
